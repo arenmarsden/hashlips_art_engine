@@ -2,9 +2,9 @@ const basePath = process.cwd();
 const fs = require("fs");
 const layersDir = `${basePath}/layers`;
 
-const { layerConfigurations } = require(`${basePath}/src/config.js`);
+const {layerConfigurations} = require(`${basePath}/src/config.js`);
 
-const { getElements } = require("../src/main.js");
+const {getElements} = require("../src/main.js");
 
 // read json data
 let rawdata = fs.readFileSync(`${basePath}/build/json/_metadata.json`);
@@ -31,7 +31,7 @@ layerConfigurations.forEach((config) => {
       elementsForLayer.push(rarityDataElement);
     });
     let layerName =
-      layer.options?.["displayName"] != undefined
+      layer.options?.["displayName"] !== undefined
         ? layer.options?.["displayName"]
         : layer.name;
     // don't include duplicate layers
@@ -51,7 +51,7 @@ data.forEach((element) => {
 
     let rarityDataTraits = rarityData[traitType];
     rarityDataTraits.forEach((rarityDataTrait) => {
-      if (rarityDataTrait.trait == value) {
+      if (rarityDataTrait.trait === value) {
         // keep track of occurrences
         rarityDataTrait.occurrence++;
       }
@@ -60,8 +60,8 @@ data.forEach((element) => {
 });
 
 // convert occurrences to occurence string
-for (var layer in rarityData) {
-  for (var attribute in rarityData[layer]) {
+for (let layer in rarityData) {
+  for (let attribute in rarityData[layer]) {
     // get chance
     let chance =
       ((rarityData[layer][attribute].occurrence / editionSize) * 100).toFixed(2);
@@ -73,9 +73,9 @@ for (var layer in rarityData) {
 }
 
 // print out rarity data
-for (var layer in rarityData) {
+for (let layer in rarityData) {
   console.log(`Trait type: ${layer}`);
-  for (var trait in rarityData[layer]) {
+  for (let trait in rarityData[layer]) {
     console.log(rarityData[layer][trait]);
   }
   console.log();

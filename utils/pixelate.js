@@ -1,17 +1,17 @@
 const fs = require("fs");
 const path = require("path");
-const { createCanvas, loadImage } = require("canvas");
+const {createCanvas, loadImage} = require("canvas");
 const basePath = process.cwd();
 const buildDir = `${basePath}/build/pixel_images`;
 const inputDir = `${basePath}/build/images`;
-const { format, pixelFormat } = require(`${basePath}/src/config.js`);
+const {format, pixelFormat} = require(`${basePath}/src/config.js`);
 const console = require("console");
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 
 const buildSetup = () => {
   if (fs.existsSync(buildDir)) {
-    fs.rmdirSync(buildDir, { recursive: true });
+    fs.rmdirSync(buildDir, {recursive: true});
   }
   fs.mkdirSync(buildDir);
 };
@@ -22,7 +22,7 @@ const getImages = (_dir) => {
       .readdirSync(_dir)
       .filter((item) => {
         let extension = path.extname(`${_dir}${item}`);
-        if (extension == ".png" || extension == ".jpg") {
+        if (extension === ".png" || extension === ".jpg") {
           return item;
         }
       })
@@ -40,7 +40,7 @@ const getImages = (_dir) => {
 const loadImgData = async (_imgObject) => {
   return new Promise(async (resolve) => {
     const image = await loadImage(`${_imgObject.path}`);
-    resolve({ imgObject: _imgObject, loadedImage: image });
+    resolve({imgObject: _imgObject, loadedImage: image});
   });
 };
 

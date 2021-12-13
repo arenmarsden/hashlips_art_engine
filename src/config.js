@@ -1,8 +1,7 @@
 const basePath = process.cwd();
-const { MODE } = require(`${basePath}/constants/blend_mode.js`);
-const { NETWORK } = require(`${basePath}/constants/network.js`);
+const {NETWORK} = require(`${basePath}/constants/network.js`);
 
-const network = NETWORK.eth;
+const network = NETWORK.sol;
 
 // General metadata for Ethereum
 const namePrefix = "Your Collection";
@@ -26,13 +25,13 @@ const layerConfigurations = [
   {
     growEditionSizeTo: 5,
     layersOrder: [
-      { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
+      {name: "Background"},
+      {name: "Eyeball"},
+      {name: "Eye color"},
+      {name: "Iris"},
+      {name: "Shine"},
+      {name: "Bottom lid"},
+      {name: "Top lid"},
     ],
   },
 ];

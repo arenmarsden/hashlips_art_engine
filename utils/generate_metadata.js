@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { createCanvas, loadImage } = require("canvas");
+const {createCanvas, loadImage} = require("canvas");
 const basePath = process.cwd();
 const buildDir = `${basePath}/build/json`;
 const inputDir = `${basePath}/build/images`;
@@ -17,7 +17,7 @@ const metadataList = [];
 
 const buildSetup = () => {
   if (fs.existsSync(buildDir)) {
-    fs.rmdirSync(buildDir, { recursive: true });
+    fs.rmdirSync(buildDir, {recursive: true});
   }
   fs.mkdirSync(buildDir);
 };
@@ -28,7 +28,7 @@ const getImages = (_dir) => {
       .readdirSync(_dir)
       .filter((item) => {
         let extension = path.extname(`${_dir}${item}`);
-        if (extension == ".png" || extension == ".jpg") {
+        if (extension === ".png" || extension === ".jpg") {
           return item;
         }
       })
@@ -46,7 +46,7 @@ const getImages = (_dir) => {
 const loadImgData = async (_imgObject) => {
   return new Promise(async (resolve) => {
     const image = await loadImage(`${_imgObject.path}`);
-    resolve({ imgObject: _imgObject, loadedImage: image });
+    resolve({imgObject: _imgObject, loadedImage: image});
   });
 };
 
@@ -63,14 +63,14 @@ const addRarity = () => {
   let count = 0;
   let imgdata = ctx.getImageData(0, 0, w, h);
   let rgb = imgdata.data;
-  let newRgb = { r: 0, g: 0, b: 0 };
+  let newRgb = {r: 0, g: 0, b: 0};
   const tolerance = 15;
   const rareColorBase = "NOT a Hot Dog";
   const rareColor = [
-    { name: "Hot Dog", rgb: { r: 192, g: 158, b: 131 } },
-    { name: "Hot Dog", rgb: { r: 128, g: 134, b: 90 } },
-    { name: "Hot Dog", rgb: { r: 113, g: 65, b: 179 } },
-    { name: "Hot Dog", rgb: { r: 162, g: 108, b: 67 } },
+    {name: "Hot Dog", rgb: {r: 192, g: 158, b: 131}},
+    {name: "Hot Dog", rgb: {r: 128, g: 134, b: 90}},
+    {name: "Hot Dog", rgb: {r: 113, g: 65, b: 179}},
+    {name: "Hot Dog", rgb: {r: 162, g: 108, b: 67}},
   ];
 
   while ((i += 10 * 4) < rgb.length) {

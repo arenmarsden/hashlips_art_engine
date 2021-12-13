@@ -1,9 +1,9 @@
 const basePath = process.cwd();
 const fs = require("fs");
-const { createCanvas, loadImage } = require("canvas");
+const {createCanvas, loadImage} = require("canvas");
 const buildDir = `${basePath}/build`;
 const imageDir = `${buildDir}/images`;
-const { format, preview_gif } = require(`${basePath}/src/config.js`);
+const {format, preview_gif} = require(`${basePath}/src/config.js`);
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 
@@ -13,22 +13,22 @@ let hashlipsGiffer = null;
 const loadImg = async (_img) => {
   return new Promise(async (resolve) => {
     const loadedImage = await loadImage(`${_img}`);
-    resolve({ loadedImage: loadedImage });
+    resolve({loadedImage: loadedImage});
   });
 };
 
 // read image paths
 const imageList = [];
-const rawdata = fs.readdirSync(imageDir).forEach((file) => {
+fs.readdirSync(imageDir).forEach((file) => {
   imageList.push(loadImg(`${imageDir}/${file}`));
 });
 
 const saveProjectPreviewGIF = async (_data) => {
   // Extract from preview config
-  const { numberOfImages, order, repeat, quality, delay, imageName } =
+  const {numberOfImages, order, repeat, quality, delay, imageName} =
     preview_gif;
   // Extract from format config
-  const { width, height } = format;
+  const {width, height} = format;
   // Prepare canvas
   const previewCanvasWidth = width;
   const previewCanvasHeight = height;
